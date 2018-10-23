@@ -88,12 +88,28 @@ for x in range(sheet.ncols):
                       for step in type2:
                        n1=type2[0]
                        n2=type2[1]
+                       start=int(n1)
+                       end=int(n2)
                        value1.append("Port:'"+n1+"'")
                        value3.append(sheet.cell_value(z,e))
                        value.append(sheets.cell_value(row,col))
                        value2.append(sheets.cell_value(rows,col))
-               	       start=n1
-                       end=n2
+               	       sub=int(n2)-int(n1)
+                       if sub == 2:
+                        i=1
+                        j=1
+                       if sub == 3000:
+                        i=2
+                        j=1000
+                       if sub == 100:
+                        i=9
+                        j=10
+                       for x in range(i):
+                        start=start+j
+                        value1.append(start)
+                        value3.append(sheet.cell_value(z,e))
+                        value.append(sheets.cell_value(row,col))
+                        value2.append(sheets.cell_value(rows,col))
                        value1.append(n2)
                        value3.append(sheet.cell_value(z,e))
                        value.append(sheets.cell_value(row,col))
@@ -418,12 +434,16 @@ for x in range(sheet.ncols):
 list_length1=len(value1)
 lis_len=len(value)
 list_len=len(value2)
+sheet1.write(0,3,"Source_Host")
+sheet1.write(0,0,"Dest_Host")
+sheet1.write(0,1,"DestProd_Ip")
+sheet1.write(0,2,"Port")
 for s in range(lis_len):
- sheet1.write(s,3,value[s])
- sheet1.write(s,0,value2[s])
- sheet1.write(s,1,value3[s])  
+ sheet1.write(s+1,3,value[s])
+ sheet1.write(s+1,0,value2[s])
+ sheet1.write(s+1,1,value3[s])  
 for x in range(list_length1):
- sheet1.write(x,2,value1[x])
+ sheet1.write(x+1,2,value1[x])
 wbss.save('pythonexcel006.xlsx')
 f.close()
 
