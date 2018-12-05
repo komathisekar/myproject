@@ -1,0 +1,20 @@
+*** Settings ***
+Library           Selenium2Library
+
+*** Variables ***
+@{userID}         Prodapt\komathi.s
+@{password}       KOM@kom21
+
+*** Test Cases ***
+test
+    open browser to login page
+
+*** Keywords ***
+open browser to login page
+    Open browser    https://outlook.prodapt.com/owa/auth/logon.aspx?replaceCurrent=1&url=https%3a%2f%2foutlook.prodapt.com%2fowa%2f    Chrome
+    Maximize Browser Window
+    Input Text    xpath=//*[@id="username"]    Prodapt\\komathi.s
+    Input Password    xpath=//*[@id="password"]    ${password}
+    click element    xpath=//*[@id="lgnDiv"]/div[9]/div/span
+    sleep    5s
+    close browser
