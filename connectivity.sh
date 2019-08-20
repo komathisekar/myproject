@@ -1,4 +1,4 @@
-#!/bin/bash
+
 #bash script which checks connectivity to multiple servers in multiple ports
 for HOST in $(cat host.host)   #loop to take the hostname from the file
 do
