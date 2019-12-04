@@ -1,0 +1,34 @@
+-
+ name: install a service
+ hosts: all
+ tasks:
+  - name: install service
+    yum:
+     name: httpd
+     state: present
+  - name: stop a service
+    service:
+     name: httpd
+     state: stopped
+  - name: create a folder
+    file:
+     path: /root/zip
+     state: directory
+     mode: 0755
+     recurse: yes
+  - name: copy file
+    copy:
+     src: /root/testzip.zip
+     dest: /root/testzip.zip
+  - name: unzip a file
+    unarchive:
+     src: /root/testzip.zip
+     dest: /root/zip/
+  - name: start a service
+    service:
+     name: httpd
+     state: started
+
+  
+
+     

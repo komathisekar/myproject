@@ -1,0 +1,7 @@
+target2 ansible_host=192.168.28.38
+#target1 ansible_host=192.168.28.42
+
+[server]
+target2
+#target1
+

@@ -1,0 +1,24 @@
+---
+- name: checkout a git repo
+  hosts: localhost
+  tasks: 
+   - name: clone a git repo
+     git: 
+      repo: 'https://github.com/komathisekar/myproject.git'
+      dest: /tmp/test/git_test
+   - name: archive the files
+     archive:
+      path: /tmp/test/git_test
+      dest: /tmp/test/git_files.tgz
+- name: copy zipped file to other host
+  hosts: all
+  tasks:
+   - name: copy the files
+     copy:
+      src: /tmp/test/git_files.tgz
+      dest: /tmp/test
+   - name: unarchive files
+     unarchive:
+      src: /tmp/test/git_files.tgz
+      dest:  /tmp/test/
+      

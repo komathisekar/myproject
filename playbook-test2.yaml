@@ -1,0 +1,14 @@
+-
+ name: check version and run a command
+ hosts: all
+ tasks: 
+  - name: check version
+    command: cat /etc/os-release | grep 'VERSION="7 (Core)"'
+    ignore_errors: yes
+    register: output
+  - name: run command
+    command: df -h
+    when: output.stdout.find('VERSION="7 (Core)"') != -1
+  - name: print
+    shell: echo "hii"
+    when: output.stdout.find('VERSION="7 (Core)"') != -1

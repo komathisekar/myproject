@@ -1,0 +1,20 @@
+---
+- name: archive a file in same directory
+  hosts: localhost
+  tasks:
+   - name: Compress directory 
+     archive:
+       path: /root/dir1 
+       dest: /tmp/test/test.tgz
+
+- name: copy zipped file to other host
+  hosts: all
+  tasks:
+   - name: copy file
+     copy: 
+       src: /tmp/test/test.tgz
+       dest: /tmp/test
+
+
+   
+

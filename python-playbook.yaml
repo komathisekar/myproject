@@ -1,0 +1,11 @@
+---
+- name: To check whether using mentioned python
+  hosts: localhost
+  vars: 
+   ansible_python_interpreter: /root/environments/venv_python3/bin/python
+  tasks:
+   - shell: "python --version"
+     register: python_installed
+   
+   - debug: 
+      var: python_installed 

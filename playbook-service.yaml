@@ -1,0 +1,15 @@
+-
+ name: install a service
+ hosts: all
+ tasks:
+  - name: install service
+    yum:
+     name: httpd
+     state: present
+  - name: stop & start a service
+    service:
+     name: httpd
+     state: stopped
+     state: started
+   
+
